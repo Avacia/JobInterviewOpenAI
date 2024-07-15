@@ -1,0 +1,12 @@
+{
+  "name": "openaiserver",
+  "version": "1.0.0",
+  "description": "create an application for turner insurance that take openai as a HR",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

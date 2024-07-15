@@ -4,6 +4,6 @@ const openAIController = require('../controllers/openAIController')
 
 
 //Define route for retrieving data from OpenAI API
-router.post('/InterviewConversation', openAIController.interviewConversation)
+router.post('/completions', openAIController.interviewConversation)
 
 module.exports = router

@@ -13,12 +13,10 @@ app.use(express.json())
 
 /* =================================== Import Routes ==================================== */
 const openAIRouter = require('./routes/openAIRoute')
-const userInputRouter = require('./routes/userInputRoute')
 
 
 /* ======================================= Routes ======================================= */
 app.use(openAIRouter)
-app.use(userInputRouter)
 
 
 /* ================================= Default Root Routes ================================ */

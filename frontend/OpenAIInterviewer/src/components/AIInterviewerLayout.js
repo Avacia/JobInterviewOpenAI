@@ -1,13 +1,12 @@
-// AIInterviewerLayout.js
 import React from 'react';
 import JobTitle from './JobTitle';
 import InterviewerQuestion from './InterviewerQuestion';
 import ResponseInput from './ResponseInput';
-import SubmitButton from './SubmitButton';
+import { Container } from '../styles/AIInterviewerLayout';
 
 const AIInterviewerLayout = () => {
   return (
-    <div>
+    <Container>
       <JobTitle jobTitle="Junior Developer" />
       <InterviewerQuestion
         question="Tell me about yourself."
@@ -22,7 +21,7 @@ const AIInterviewerLayout = () => {
           />
         }
       />
-    </div>
+    </Container>
   );
 };
 

@@ -1,12 +1,12 @@
-// InterviewerQuestion.js
 import React from 'react';
+import { QuestionContainer, Question, Response } from '../styles/InterviewerQuestion';
 
 const InterviewerQuestion = ({ question, response }) => {
   return (
-    <div>
-      <p>{question}</p>
-      <div>{response}</div>
-    </div>
+    <QuestionContainer>
+      <Question>{question}</Question>
+      <Response>{response}</Response>
+    </QuestionContainer>
   );
 };
 

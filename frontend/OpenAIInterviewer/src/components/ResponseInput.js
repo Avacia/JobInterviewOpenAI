@@ -1,5 +1,5 @@
-// ResponseInput.js
 import React, { useState } from 'react';
+import { InputContainer, Input, SubmitButton } from '../styles/ResponseInput';
 
 const ResponseInput = ({ placeholder, submitButtonText }) => {
   const [response, setResponse] = useState('');
@@ -10,15 +10,15 @@ const ResponseInput = ({ placeholder, submitButtonText }) => {
   };
 
   return (
-    <div>
-      <input
+    <InputContainer>
+      <Input
         type="text"
         placeholder={placeholder}
         value={response}
         onChange={(e) => setResponse(e.target.value)}
       />
-      <button onClick={handleSubmit}>{submitButtonText}</button>
-    </div>
+      <SubmitButton onClick={handleSubmit}>{submitButtonText}</SubmitButton>
+    </InputContainer>
   );
 };
 

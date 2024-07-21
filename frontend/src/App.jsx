@@ -8,25 +8,45 @@ import { useState } from 'react'
 
 /* ======================================== App =======================================*/
 function App() {
-  const [jobTitle, setJobTitle] = useState(null)
-  const [userInput, setUserInput] = useState(null)
+  const [jobTitle, setJobTitle] = useState('')
+  const [userInput, setUserInput] = useState('')
+  const [message, setMessage] = useState(null)
   const [chat, setChat] = useState([])
 
 
   function userInputTitle(e){
-    console.log(e.target.value)
+    e.preventDefault()
     setJobTitle(e.target.value)
   }
 
   function userInputContent(e){
-    console.log(e.target.value)
+    e.preventDefault()
     setUserInput(e.target.value)
   }
 
-  function submitUserInput(){
-    setChat([...chat, {user: userInput}])
+
+  async function sendMessageToAI(){
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        message: userInput,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+    try{
+      const response = await fetch('http://localhost:4000/completions', options)
+      const data = await response.json()
+      console.log(data)
+      setMessage(data.choices[0].message)
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
+  console.log(jobTitle)
   return (
     <div className="container">
       <div className="topic">
@@ -34,7 +54,7 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" onChange={userInputTitle}/></h3>
+        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} onChange={userInputTitle}/></h3>
       </div>
 
       <div className="displayContent">
@@ -43,7 +63,7 @@ function App() {
 
       <div className="userInput">
         <input type='text' name='userInput' onChange={userInputContent} />
-        <button onClick={submitUserInput}>Submit</button>
+        <button onClick={sendMessageToAI}>Submit</button>
       </div>
 
     </div>

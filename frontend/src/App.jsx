@@ -14,10 +14,12 @@ function App() {
 
 
   function userInputTitle(e){
+    console.log(e.target.value)
     setJobTitle(e.target.value)
   }
 
   function userInputContent(e){
+    console.log(e.target.value)
     setUserInput(e.target.value)
   }
 
@@ -32,7 +34,7 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" /></h3>
+        <h3>Job Title: <input type="text" name="jobTitle" onChange={userInputTitle}/></h3>
       </div>
 
       <div className="displayContent">

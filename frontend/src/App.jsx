@@ -83,7 +83,7 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} onChange={userInputTitle}/></h3>
+        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder={} onChange={userInputTitle}/></h3>
         <button onClick={sendTitleToAI}>Submit</button>
       </div>
 
@@ -92,7 +92,7 @@ function App() {
       </div>
 
       <div className="userInput">
-        <input type='text' name='userInput' onChange={userInputContent} />
+        <input type='text' name='userInput' value={} placeholder={} onChange={userInputContent} />
         <button onClick={sendMessageToAI}>Submit</button>
       </div>
 

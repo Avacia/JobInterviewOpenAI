@@ -83,16 +83,17 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder={} onChange={userInputTitle}/></h3>
+        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder={/* Jeanny Fill 1st*/} onChange={userInputTitle}/></h3>
         <button onClick={sendTitleToAI}>Submit</button>
       </div>
 
       <div className="displayContent">
         {/* User and AI Content Display Here*/}
+        {/* Jeanny Fill 4th*/}
       </div>
 
       <div className="userInput">
-        <input type='text' name='userInput' value={} placeholder={} onChange={userInputContent} />
+        <input type='text' name='userInput' value={/* Jeanny Fill 2nd*/} placeholder={/* Jeanny Fill 3rd*/} onChange={userInputContent} />
         <button onClick={sendMessageToAI}>Submit</button>
       </div>
 

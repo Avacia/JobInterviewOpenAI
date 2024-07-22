@@ -45,7 +45,7 @@ function App() {
       const response = await fetch("http://localhost:4000/completions", options)
       const data = await response.json()
       console.log(data)
-      setChat([...chat, data.choices[0].message])
+      setMessage(data.choices[0].message)
     }
     catch(error){
       console.log(error)
@@ -75,7 +75,6 @@ function App() {
     }
   }
 
-  console.log(jobTitle)
   return (
     <div className="container">
       <div className="topic">

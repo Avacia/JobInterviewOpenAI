@@ -5,13 +5,14 @@ const openai = new OpenAIApi({
 });
 module.exports.interviewConversation = async(req, res) => {
 
-    const { question } = req.body;
+    const { message } = req.body;
+    
 
     try{
         
         const chatCompletion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            messages: [{"role": "user", "content": question}]
+            messages: [{"role": "user", "content": message}]
         })
         res.json({ answer: chatCompletion.choices[0].message});
     }

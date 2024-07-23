@@ -14,7 +14,6 @@ function App() {
   const [chat, setChat] = useState([])
   const instructionToAI = `You are a job interviewer for ${jobTitle}.
                             start with the question “Tell me about yourself”`;
-  // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
   const questionMoreThanSix = `give feedback and end the interview`;                           
 
   function resetChat(){
@@ -31,7 +30,6 @@ function App() {
   }
 
   function userInputContent(e){
-    // e.preventDefault()
     setUserInput(e.target.value)
     
   }
@@ -112,15 +110,11 @@ function App() {
   // Use useEffect to send the job title to AI when it changes
   useEffect(() => {
 
-    if(chat.length > 4 && chat.length < 6){
+    if(chat.length > 12 && chat.length < 14){
       sendQuestionMoreThanSix()
-      // resetChat();
     }  
 
     if (message && userInput) {
-      
-      // setChat([...chat, message])
-      //console.log(message)
       setChat( chat => ([ ...chat,
         {
           role: "user",
@@ -140,7 +134,6 @@ function App() {
           content:message.content
         }
       ]))
-      // console.log(jobTitle)
     }
 
   }, [message]);
@@ -161,7 +154,6 @@ function App() {
 
         <ul>
           {chat.length > 0 && chat.map((message, index) => {
-            //console.log(message)
             return(
               <li key={index}>
                 <p>{message.role}</p>
@@ -171,7 +163,7 @@ function App() {
           })}
         </ul>
 
-        {chat.length > 5 && <button onClick={resetChat}>Reset</button>}
+        {chat.length > 12 && <button onClick={resetChat}>Reset</button>}
         
       </div>
       <div className="userInput">

@@ -45,7 +45,6 @@ function App() {
       const response = await fetch("http://localhost:4000/completions", options)
       const data = await response.json()
       console.log(data)
-      setChat([...chat, { role: 'Interviewer', content: data.choices[0].message }])
     }
     catch(error){
       console.log(error)
@@ -68,7 +67,7 @@ function App() {
       const data = await response.json()
       console.log(data)
       setMessage(data.choices[0].message)
-      setChat([...chat, { role: 'user', content: userInput }, { role: 'Interviewer', content: data.choices[0].message }])
+    
     }
     catch(error){
       console.log(error)
@@ -78,8 +77,18 @@ function App() {
   // Use useEffect to send the job title to AI when it changes
   useEffect((message) => {
     if (message) {
-      sendTitleToAI();
+      setChat( chat => ([ ...chat, 
+        {
+          role: "user",
+          content: message
+        },
+        {
+          role:message.role,
+          content:message.content
+        }
+      ]))
     }
+
   }, [message]);
 
   console.log(jobTitle)

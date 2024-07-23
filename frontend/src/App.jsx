@@ -3,7 +3,7 @@ import './App.css'
 
 
 /* =================================== Import Library =================================*/
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 /* ======================================== App =======================================*/
@@ -45,13 +45,12 @@ function App() {
       const response = await fetch("http://localhost:4000/completions", options)
       const data = await response.json()
       console.log(data)
-      setChat([...chat, data.choices[0].message])
+      setChat([...chat, { role: 'Interviewer', content: data.choices[0].message }])
     }
     catch(error){
       console.log(error)
     }
   }
-
 
   async function sendMessageToAI(){
     const options = {
@@ -69,11 +68,19 @@ function App() {
       const data = await response.json()
       console.log(data)
       setMessage(data.choices[0].message)
+      setChat([...chat, { role: 'user', content: userInput }, { role: 'Interviewer', content: data.choices[0].message }])
     }
     catch(error){
       console.log(error)
     }
   }
+
+  // Use useEffect to send the job title to AI when it changes
+  useEffect((message) => {
+    if (message) {
+      sendTitleToAI();
+    }
+  }, [message]);
 
   console.log(jobTitle)
   return (
@@ -83,20 +90,21 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder={/* Jeanny Fill 1st*/} onChange={userInputTitle}/></h3>
+        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder="Enter Job Title" onChange={userInputTitle}/></h3>
         <button onClick={sendTitleToAI}>Submit</button>
       </div>
-
       <div className="displayContent">
         {/* User and AI Content Display Here*/}
-        {/* Jeanny Fill 4th*/}
+        {chat.map((message, index) => (
+          <div key={index} className={message.role}>
+            <p>{message.content}</p>
+          </div>
+        ))}
       </div>
-
       <div className="userInput">
-        <input type='text' name='userInput' value={/* Jeanny Fill 2nd*/} placeholder={/* Jeanny Fill 3rd*/} onChange={userInputContent} />
+        <input type='text' name='userInput' value={userInput} placeholder="Type your response here..." onChange={userInputContent} />
         <button onClick={sendMessageToAI}>Submit</button>
       </div>
-
     </div>
   )
 }

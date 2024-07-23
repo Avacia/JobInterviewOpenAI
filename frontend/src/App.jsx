@@ -13,8 +13,9 @@ function App() {
   const [message, setMessage] = useState(null)
   const [chat, setChat] = useState([])
   const instructionToAI = `You are a job interviewer who is going to interview a candidate for ${jobTitle}.
+                           The flow will start with the Interviewer saying “Tell me about yourself”.
+                           Then the user will response with their answer.
                            You should ask a series of questions to the user, and can adjust its response based on the answers.
-                           The flow will start with the Interviewer saying “Tell me about yourself”. 
                            Ask at least 6 questions based on response of the user. At the end of the whole interview, 
                            the Interviewer should comment on how well the user answered the questions, and suggest 
                            how the user can improve its response.`
@@ -45,6 +46,7 @@ function App() {
       const response = await fetch("http://localhost:4000/completions", options)
       const data = await response.json()
       console.log(data)
+      setMessage(data.message)
     }
     catch(error){
       console.log(error)
@@ -66,7 +68,7 @@ function App() {
       const response = await fetch('http://localhost:4000/completions', options)
       const data = await response.json()
       console.log(data)
-      setMessage(data.choices[0].message)
+      setMessage(data.message)
     
     }
     catch(error){
@@ -75,7 +77,7 @@ function App() {
   }
 
   // Use useEffect to send the job title to AI when it changes
-  useEffect((message) => {
+  useEffect(() => {
     if (message) {
       setChat( chat => ([ ...chat, 
         {

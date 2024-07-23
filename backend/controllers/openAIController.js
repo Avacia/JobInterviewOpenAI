@@ -14,7 +14,7 @@ module.exports.interviewConversation = async(req, res) => {
             model: "gpt-3.5-turbo",
             messages: [{"role": "user", "content": message}]
         })
-        res.json({ answer: chatCompletion.choices[0].message});
+        res.json({ message: chatCompletion.choices[0].message});
     }
     catch(error){
         // res.status(500).send("Internal Server Error")

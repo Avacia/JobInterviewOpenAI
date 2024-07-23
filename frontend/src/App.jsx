@@ -105,8 +105,13 @@ function App() {
       <div className="displayContent">
         {/* User and AI Content Display Here*/}
         {chat.map((message, index) => (
-          <div key={index} className={message.role}>
-            <p>{message.content}</p>
+          <div key={index} className="messageContent">
+            <ul>
+              <li>
+                {message.role}
+                {message.content}
+              </li>
+            </ul>
           </div>
         ))}
       </div>

@@ -18,14 +18,13 @@ function App() {
   const questionMoreThanSix = `give feedback and end the interview`;                           
 
   function resetChat(){
-
     setJobTitle('');
     setUserInput('');
     setMessage(null);
     setChat([]);
     window.location.reload();
-
   } 
+
   function userInputTitle(e){
     e.preventDefault()
     setJobTitle(e.target.value)
@@ -117,6 +116,7 @@ function App() {
       sendQuestionMoreThanSix()
       // resetChat();
     }  
+
     if (message && userInput) {
       
       // setChat([...chat, message])
@@ -132,6 +132,7 @@ function App() {
         }
       ]))
     }
+
     if(message && !userInput){
       setChat( chat => ([ ...chat,
         {
@@ -154,21 +155,23 @@ function App() {
         <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder="Enter Job Title" onChange={userInputTitle}/></h3>
         <button onClick={sendTitleToAI}>Submit</button>
       </div>
+
       <div className="displayContent">
         {/* User and AI Content Display Here*/}
+
         <ul>
-        {chat.length > 0 && chat.map((message, index) => {
+          {chat.length > 0 && chat.map((message, index) => {
             //console.log(message)
             return(
               <li key={index}>
                 <p>{message.role}</p>
                 <p>{message.content}</p>
-              </li>)
-            }
-            
-            )}
+              </li>
+            )
+          })}
         </ul>
-        {chat.length>5 && <button onClick={resetChat}>Reset</button>}
+
+        {chat.length > 5 && <button onClick={resetChat}>Reset</button>}
         
       </div>
       <div className="userInput">

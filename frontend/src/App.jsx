@@ -1,5 +1,6 @@
 /* =================================== Import Files ===================================*/
 import './App.css'
+import onlineDot from '/onlineDot.png'
 
 
 /* =================================== Import Library =================================*/
@@ -12,16 +13,22 @@ function App() {
   const [userInput, setUserInput] = useState('')
   const [message, setMessage] = useState(null)
   const [chat, setChat] = useState([])
+  const [questionCount,  setQuestionCount] = useState(0)
   const instructionToAI = `You are a job interviewer for ${jobTitle}.
-                            start with the question “Tell me about yourself”`;
-  const questionMoreThanSix = `give feedback and end the interview`;                           
+                           Start with the question “Tell me about yourself”.`;
+  const questionToContinue = `response back to user and ask another question related 
+                              to the response as a job interviewer for ${jobTitle}.`                      
+  const questionMoreThanSix = `Comment on how well the user answered the questions, 
+                               and suggest how the user can improve its response. 
+                               Finished the conversation.`;                           
+
 
   function resetChat(){
-    setJobTitle('');
-    setUserInput('');
-    setMessage(null);
-    setChat([]);
-    window.location.reload();
+    setJobTitle('')
+    setUserInput('')
+    setMessage(null)
+    setChat([])
+    setQuestionCount(0)
   } 
 
   function userInputTitle(e){
@@ -51,6 +58,7 @@ function App() {
       const data = await response.json()
       setMessage(data.message)
       //console.log(data)
+      setQuestionCount(questionCount + 1)
     }
     catch(error){
       console.log(error)
@@ -62,7 +70,7 @@ function App() {
     const options = {
       method: 'POST',
       body: JSON.stringify({
-        message: userInput,
+        message: questionToContinue, userInput, chat
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -74,8 +82,7 @@ function App() {
       const data = await response.json()
       //console.log(data)
       setMessage(data.message)
-      setUserInput('');
-    
+      setQuestionCount(questionCount + 1)
     }
     catch(error){
       console.log(error)
@@ -87,7 +94,7 @@ function App() {
     const options = {
       method: 'POST',
       body: JSON.stringify({
-        message: questionMoreThanSix,
+        message: questionMoreThanSix, chat
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -99,7 +106,7 @@ function App() {
       const data =  await response.json()
       //console.log(data)
       setMessage(data.message)
-    
+      setQuestionCount(questionCount + 1)
     }
     catch(error){
       console.log(error)
@@ -110,14 +117,14 @@ function App() {
   // Use useEffect to send the job title to AI when it changes
   useEffect(() => {
 
-    if(chat.length > 12 && chat.length < 14){
+    if(questionCount >= 6 && questionCount < 7){
       sendQuestionMoreThanSix()
     }  
 
     if (message && userInput) {
       setChat( chat => ([ ...chat,
         {
-          role: "user",
+          role: "User",
           content: userInput
         },
         {
@@ -125,6 +132,7 @@ function App() {
           content:message.content
         }
       ]))
+      setUserInput('')
     }
 
     if(message && !userInput){
@@ -138,6 +146,8 @@ function App() {
 
   }, [message]);
 
+  console.log(chat)
+
   return (
     <div className="container">
       <div className="topic">
@@ -145,31 +155,41 @@ function App() {
       </div>
 
       <div className="title">
-        <h3>Job Title: <input type="text" name="jobTitle" value={jobTitle} placeholder="Enter Job Title" onChange={userInputTitle}/></h3>
-        <button onClick={sendTitleToAI}>Submit</button>
+        <h3>Job Title: <input className="titleInputField" type="text" name="jobTitle" value={jobTitle} placeholder="Enter Job Title" onChange={userInputTitle}/></h3>
+        <button className="titleBtn" onClick={sendTitleToAI}>Submit</button>
       </div>
 
       <div className="displayContent">
         {/* User and AI Content Display Here*/}
+        <div className="user">
+          <div className='userIcon'>
+            <img src={onlineDot} alt="onlineDot" />
+            <h3 className="roleTitle">Assistant</h3>
+          </div>
 
-        <ul>
+          <div>
+            {chat.length > 2 && <button className="resetBtn" onClick={resetChat}>Reset</button>}
+          </div>
+        </div>
+
+        <hr />
+        
+        <ul className="chat">
           {chat.length > 0 && chat.map((message, index) => {
+            console.log(message)
             return(
-              <li key={index}>
-                <p>{message.role}</p>
-                <p>{message.content}</p>
+              <li className={message.role === "assistant" ? "chatListAssistant" : "chatListUser"} key={index}>
+                <p className="messageContent">{message.content}</p>
               </li>
             )
           })}
-        </ul>
+        </ul>        
+      </div>
 
-        {chat.length > 12 && <button onClick={resetChat}>Reset</button>}
-        
-      </div>
-      <div className="userInput">
-        <input type='text' name='userInput' value={userInput} placeholder="Type your response here..." onChange={userInputContent} />
-        <button onClick={sendMessageToAI}>Submit</button>
-      </div>
+      {questionCount < 7 && <div className="userInput">
+        <input className="responseInputField" type='text' name='userInput' value={userInput} placeholder="Type your response here..." onChange={userInputContent} />
+        <button className="responseBtn" onClick={sendMessageToAI}>Submit</button>
+      </div>}
     </div>
   )
 }

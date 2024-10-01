@@ -163,7 +163,7 @@ function App() {
         {/* User and AI Content Display Here*/}
         <div className="user">
           <div className='userIcon'>
-            <img src={onlineDot} alt="onlineDot" />
+            {jobTitle && <img src={onlineDot} alt="onlineDot" />}
             <h3 className="roleTitle">Assistant</h3>
           </div>
 

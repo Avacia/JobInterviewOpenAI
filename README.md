@@ -44,16 +44,16 @@ To run this project locally, follow these steps:
 ## Application Structure
 The backend follows an MVC (Model-View-Controller) architecture to keep the code organized and maintainable. Here’s a brief overview of the structure:
 \`\`\`
-backend/
-│
-├── controllers/
-│   └── openAIController.js   # Handles AI requests and responses
-│
-├── routes/
-│   └── openAIRoutes.js       # Routes for managing API requests
-|
-├── server.js             # Main file for server setup
-└── package.json          # Project dependencies and scripts
+      backend/
+      │
+      ├── controllers/
+      │   └── openAIController.js   # Handles AI requests and responses
+      │
+      ├── routes/
+      │   └── openAIRoutes.js       # Routes for managing API requests
+      |
+      ├── server.js             # Main file for server setup
+      └── package.json          # Project dependencies and scripts
 
 \`\`\`
 ## How It Works

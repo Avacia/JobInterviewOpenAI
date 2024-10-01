@@ -1,4 +1,4 @@
-`# Job Interview OpenAI
+# Job Interview OpenAI
 
 This project is a simple application that uses AI as an assistant for job interviewers. The application features a chat format interface where users can interact with the AI, making it easier to simulate and prepare for job interviews. 
 
@@ -82,4 +82,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or suggestions, feel free to reach out at:
 - **GitHub**: [Avacia](https://github.com/Avacia)
 - **Email**: wang80139@gmail.com
-`

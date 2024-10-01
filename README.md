@@ -12,43 +12,43 @@ This project is a simple application that uses AI as an assistant for job interv
 To run this project locally, follow these steps:
 
 1. **Clone the repository:**
-   \`\`\`bash
+   ```bash
    git clone https://github.com/Avacia/JobInterviewOpenAI.git
    cd JobInterviewOpenAI
-   \`\`\`
+   ```
    
 2. **Install dependencies:**
    For **Backend**:
-   \`\`\`bash
+   ```bash
    cd backend
    npm install
-   \`\`\`
+   ```
    For **Frontend**:
-   \`\`\`bash
+   ```bash
    cd ../frontend
    npm install
-   \`\`\`
+   ```
    
 3. **Set up environment variables**:  
-   Create a \`.env\` file in the backend folder with your API keys and configuration.
+   Create a `.env` file in the backend folder with your API keys and configuration.
    
 4. **Start the development server:**
    **Backend**:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
    **Frontend**:
-   \`\`\`bash
+   ```bash
    cd ../frontend
    npm start
-   \`\`\`
+   ```
    
 5. **Open the application:**  
-   Go to \`http://localhost:3000\` to access the chat interface.
+   Go to `http://localhost:3000` to access the chat interface.
 
 ## Application Structure
 The backend follows an MVC (Model-View-Controller) architecture to keep the code organized and maintainable. Here’s a brief overview of the structure:
-\`\`\`
+```
       backend/
       │
       ├── controllers/
@@ -60,9 +60,10 @@ The backend follows an MVC (Model-View-Controller) architecture to keep the code
       ├── server.js             # Main file for server setup
       └── package.json          # Project dependencies and scripts
 
-\`\`\`
+```
+
 ## How It Works
-The frontend consists of a chat interface where users can interact with the AI assistant. The server processes requests using a Controller that handles interactions with the AI and sends responses back to the client. Routes manage GET and POST requests, ensuring seamless communication between the frontend and backend. The \`server.js\` file serves as the main entry point, initializing middleware and setting up the server. The AI assists users by providing responses to interview questions, helping them prepare for job interviews effectively.
+The frontend consists of a chat interface where users can interact with the AI assistant. The server processes requests using a Controller that handles interactions with the AI and sends responses back to the client. Routes manage GET and POST requests, ensuring seamless communication between the frontend and backend. The `server.js` file serves as the main entry point, initializing middleware and setting up the server. The AI assists users by providing responses to interview questions, helping them prepare for job interviews effectively.
 
 ## Frontend Display
 The frontend consists of a chat interface that displays the conversation between the user and the AI assistant.
@@ -70,14 +71,14 @@ The frontend consists of a chat interface that displays the conversation between
 
 ## Usage Instructions
 1. **Start the Application**: Run the development servers for both the backend and frontend.
-2. **Interact with the AI**: Open your web browser and navigate to \`http://localhost:3000\`. Start typing your interview questions in the chat interface to receive responses from the AI assistant.
+2. **Interact with the AI**: Open your web browser and navigate to `http://localhost:3000`. Start typing your interview questions in the chat interface to receive responses from the AI assistant.
 
 ## Contribution
 Contributions are welcome! To contribute to this project, please follow these steps:
 1. Fork the repository.
-2. Create a new branch (\`git checkout -b feature/new-feature\`).
-3. Make your changes and commit them (\`git commit -m 'Add new feature'\`).
-4. Push to the branch (\`git push origin feature/new-feature\`).
+2. Create a new branch (`git checkout -b feature/new-feature`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/new-feature`).
 5. Open a pull request.
 
 ## License

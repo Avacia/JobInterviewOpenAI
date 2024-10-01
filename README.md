@@ -10,11 +10,13 @@ This project is a simple application that uses AI as an assistant for job interv
 
 ## Installation and Setup
 To run this project locally, follow these steps:
+
 1. **Clone the repository:**
    \`\`\`bash
    git clone https://github.com/Avacia/JobInterviewOpenAI.git
    cd JobInterviewOpenAI
    \`\`\`
+   
 2. **Install dependencies:**
    For **Backend**:
    \`\`\`bash
@@ -26,8 +28,10 @@ To run this project locally, follow these steps:
    cd ../frontend
    npm install
    \`\`\`
+   
 3. **Set up environment variables**:  
    Create a \`.env\` file in the backend folder with your API keys and configuration.
+   
 4. **Start the development server:**
    **Backend**:
    \`\`\`bash
@@ -38,6 +42,7 @@ To run this project locally, follow these steps:
    cd ../frontend
    npm start
    \`\`\`
+   
 5. **Open the application:**  
    Go to \`http://localhost:3000\` to access the chat interface.
 
